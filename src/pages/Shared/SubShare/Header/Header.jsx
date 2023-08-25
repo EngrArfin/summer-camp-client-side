@@ -9,10 +9,7 @@ const Header = ({ image, name }) => {
       bgImageAlt="the menu"
       strength={200}
     >
-      <div
-        className="hero min-h-screen"
-        
-      >
+      <div className="hero min-h-screen ">
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
           <div className="max-w-md">
