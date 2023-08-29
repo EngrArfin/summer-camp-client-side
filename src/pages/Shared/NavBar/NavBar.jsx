@@ -1,53 +1,109 @@
-import arf from '../../../assets/icon/correct.png'
+import profile from "../../../assets/icon/correct.png";
+
+import { useContext, useState } from "react";
+import "./NavBar.css";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const NavBar = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const {user, logOut} = useContext(AuthContext);
+  const handleLogOut =()=>{
+    logOut()
+    .then(()=>{})
+    .catch(error => console.log(error));
+    
+
+  }
 
   const navOption = (
     <>
-      <li>
-        <a>Home</a>
-      </li>
-      <li>
-        <a>All Course</a>
-        {/* <ul className="p-1">
-          <li>
-            <a>Course List</a>
-          </li>
-          <li>
-            <a>Course Details</a>
-          </li>
-        </ul> */}
-      </li>
-      <li>
-        <a>Blog Class</a>
-        {/* <ul className="p-1">
-          <li>
-            <a>Class Video</a>
-          </li>
-          <li>
-            <a>Class Live</a>
-          </li>
-        </ul> */}
-      </li>
-      <li>
-        <a>Pages</a>
-      </li>
-      <li>
-        <a>About</a>
-      </li>
-      <li>
-        <a>Contract</a>
-      </li>
+      <div className="dropdown p-2">
+        <Link className="btn p-4" onClick={toggleDropdown} to="/">
+          Home
+        </Link>
+        {isDropdownOpen && (
+          <div className="dropdown-content">
+            <a href="#">Main Home</a>
+            <a href="#">Home Content</a>
+            <a href="#">Home Call</a>
+          </div>
+        )}
+      </div>
+
+      <div className="dropdown p-2">
+        <button className="btn p-4" onClick={toggleDropdown}>
+          All COurse
+        </button>
+        {isDropdownOpen && (
+          <div className="dropdown-content">
+            <Link to="/english">English Learning</Link>
+            <a href="#">Item 2</a>
+            <a href="#">Item 3</a>
+          </div>
+        )}
+      </div>
+
+      <div className="dropdown p-2">
+        <button className="btn p-4" onClick={toggleDropdown}>
+          Blog Class
+        </button>
+        {isDropdownOpen && (
+          <div className="dropdown-content">
+            <a href="#">Item 1</a>
+            <a href="#">Item 2</a>
+            <a href="#">Item 3</a>
+          </div>
+        )}
+      </div>
+
+      <div className="dropdown p-2 ">
+        <Link className="btn p-4" to="/contract" >
+          Contract
+        </Link>
+        
+      </div>
+      <div className="dropdown p-2">
+        <Link className="btn p-4" to="/login">
+          Login
+        </Link>
+      </div>
+      <div className="dropdown p-2">
+        <Link className="btn p-4" to="/register">
+          Regster
+        </Link>
+      </div>
+      <div className="dropdown p-2">
+        <Link className="btn p-4" to="/signup">
+          Sign UP
+        </Link>
+      </div>
+      {
+        user? <>
+        <button onClick={handleLogOut} className="btn btn-active btn-ghost">LogOut</button>
+
+        </>: <>
+        <Link className="btn p-4" to="/login">
+          Login
+        </Link>
+        
+        </>
+      }
+
     </>
   );
 
   return (
     <>
-      <div className="navbar max-w-8xl fixed z-10 bg-opacity-60 bg-black text-white">
+      <div className="navbar max-w-8xl fixed z-10 bg-opacity-30 bg-black text-white">
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabIndex={1} className="btn btn-ghost lg:hidden">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -75,26 +131,36 @@ const NavBar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOption}</ul>
         </div>
-        
 
         <div className="navbar-end p-12">
+          <a className="btn btn-primary p-4" >Enrollment</a>
 
-        <a className="btn p-4">Enrollment</a>
+          <button className="btn btn-ghost btn-circle">
+            <div className="indicator">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                />
+              </svg>
+              <span className="badge badge-xs badge-primary indicator-item"></span>
+            </div>
+          </button>
 
-        <button className="btn btn-ghost btn-circle">
-      <div className="indicator">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-        <span className="badge badge-xs badge-primary indicator-item"></span>
-      </div>
-    </button>
-
-    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <img src={arf} />
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              <img src={profile} />
+            </div>
+          </label>
         </div>
-      </label>
-        </div>
-
       </div>
     </>
   );

@@ -1,17 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import { router } from './Routes/Routes';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { router } from "./Routes/Routes";
 
-import {
-  
-  RouterProvider,
-} from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
+import AuthProvider from "./AuthProvider/AuthProvider";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <div className='max-w-8xl mx-auto'	>
-    <RouterProvider router={router} />
-    </div>
-  </React.StrictMode>,
-)
+    <AuthProvider>
+    
+      <div className="max-w-8xl mx-auto">
+        <RouterProvider router={router} />
+      </div>
+    </AuthProvider>
+  </React.StrictMode>
+);
