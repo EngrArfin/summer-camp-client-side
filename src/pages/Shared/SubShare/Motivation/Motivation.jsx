@@ -20,7 +20,7 @@ const Motivation = () => {
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
               excepturi exercitationem quasi. 
             </p>
-            <button className="btn btn-primary">Get Started</button>
+            <button className="btn p-4 text-black-900 bg-blue-400">Enroll here</button>
           </div>
         </div>
       </div>

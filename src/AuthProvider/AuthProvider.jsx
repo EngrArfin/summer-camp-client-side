@@ -13,14 +13,14 @@ const AuthProvider = ({ children }) => {
     const [user , setUser] = useState(null); 
     const [loading, setLoading]= useState(true);
 
-    const createUser = (email, password,photo) =>{
+    const createUser = (email, password) =>{
         setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password,photo);
+        return createUserWithEmailAndPassword(auth, email, password);
     }
 
-    const signIn = (email, password,photo) =>{
+    const signIn = (email, password) =>{
         setLoading(true);
-        return signInWithEmailAndPassword(auth, email, password, photo);
+        return signInWithEmailAndPassword(auth, email, password);
     }
 
     /* google add l-2 */
@@ -34,6 +34,11 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
+    const updateUserProfile = (name, photo)=> {
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo
+        });
+    }
     useEffect(()=>{
         const unsubscribe =  onAuthStateChanged(auth, currentUser => {
             console.log('auth state change ', currentUser);
@@ -58,6 +63,7 @@ const AuthProvider = ({ children }) => {
         /* google */
         signInWithGoogle,
         logOut,
+        updateUserProfile
     }
 
     return (

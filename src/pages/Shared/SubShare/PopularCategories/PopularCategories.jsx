@@ -9,7 +9,6 @@ import "swiper/css/pagination";
 
 import SubTitle from "../SubTitle/SubTitle";
 import { useEffect, useState } from "react";
-import { data } from "autoprefixer";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
@@ -79,7 +78,7 @@ const PopularCategories = () => {
                     </div>
                     <p>If a dog chews shoes whose shoes does he choose?</p>
                     <div>
-                      <button className="btn rounded-r-lg ">Select Enroll</button>
+                      <button className="btn p-4 text-black-900 bg-blue-400 ">Select Enroll</button>
                     </div>
                     <div className=" flex card-actions justify-end">
                       <div className="badge badge-outline">12 Lessons</div>

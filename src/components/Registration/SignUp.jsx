@@ -1,18 +1,41 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
+ 
+  const {register, handleSubmit,reset,  formState: { errors }} = useForm();
+  const {  createUser , updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    /* : SubmitHandler */
+  const onSubmit = data => {
     console.log(data);
+    createUser(data.email, data.password)
+    .then(result => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+
+      updateUserProfile(data.name, data.photoURL)
+      .then(() => {
+        console.log('user profile info updated')
+        reset();
+
+        /* Success */
+        Swal.fire({
+          position: "top-end",
+          icon: " Login success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate('/');
+      })
+      .catch(error => console.log(error));
+    })
   };
+  /* navigate('/'); */
   return (
     <div>
       <div className="hero min-h-screen bg-orange-300">
@@ -51,6 +74,21 @@ const SignUp = () => {
                 />
                 {errors.email && <span className="text-red-600">Name is required</span>}
               </div>
+              {/* Photo URL */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text ">Photo URL</span>
+                </label>
+                <input
+                  type="email"
+                  {...register("photoURL",{ required: true })}
+                  placeholder="Photo URL"
+                  className="input input-bordered"
+                  required
+                />
+                {errors.photoURL && <span className="text-red-600">Photo URL is required</span>}
+              </div>
+
 
               <div className="form-control">
                 <label className="label">
@@ -68,7 +106,7 @@ const SignUp = () => {
         <p className="text-red-600">Password is required</p>}
                 
               </div>
-              <div className="form-control">
+             <div className="form-control">
                 <label className="label">
                   <span className="label-text ">Photo URL</span>
                 </label>
@@ -80,9 +118,9 @@ const SignUp = () => {
                     Login
                   </Link>
                 </label>
-              </div>
+              </div> 
               <div className="form-control mt-6">
-                <button className="btn btn-primary ">Register</button>
+                <Link className="btn p-4  bg-blue-400">Register</Link>
               </div>
             </form>
           </div>

@@ -9,6 +9,8 @@ import Login from "../components/Login/Login";
 import Register from "../components/Registration/Register";
 import English from "../pages/Home/English/English";
 import SignUp from "../components/Registration/SignUp";
+import PrivateRouter from "./PrivateRouter";
+import Secret from "../pages/AnotherPath/Secret/Secret";
 
   export const router = createBrowserRouter([
     {
@@ -38,6 +40,10 @@ import SignUp from "../components/Registration/SignUp";
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/secret',
+                element: <PrivateRouter><Secret></Secret></PrivateRouter>
             }
         ]
     }

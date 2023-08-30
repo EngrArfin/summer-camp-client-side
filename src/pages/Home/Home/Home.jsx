@@ -8,7 +8,6 @@ import PopularCategories from "../../Shared/SubShare/PopularCategories/PopularCa
 const Home = () => {
     return (
         <div>
-            {/* <Body></Body> */}
             <Header></Header>
             <PopularCategories></PopularCategories>
             <InstructorCategories></InstructorCategories>

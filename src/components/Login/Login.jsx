@@ -1,40 +1,52 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
+
 
 const Login = () => {
   const { signIn, signInWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname ||"/";
 
   const handleLogin = (event) => {
     event.preventDefault();
+    
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    const photo = form.photo.value;
-    console.log(email, password,photo);
+    //const photo = form.photo.value;
+    console.log(email, password);
 
     //password error or correct identification and validation link up hi dear.
 
-    signIn(email, password,photo)
+    signIn(email, password)
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
         form.reset();
 
-/* Success */
-        
+        /* Success */
+        Swal.fire({
+          position: "top-end",
+          icon: " Login success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      
 
-        
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  {
+  
     /* signin with Google */
-  }
+  
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
@@ -44,6 +56,9 @@ const Login = () => {
       .catch((error) => {
         console.log(error);
       });
+      navigate(from, {replace: true});
+      
+      
   };
   return (
     <div>
@@ -52,8 +67,8 @@ const Login = () => {
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold uppercase">Please Login !</h1>
           </div>
-          <div className="card flex-shrink-0 w-full max-w-sm  bg-red-100">
-            <form onSubmit={handleLogin} className="card-body ">
+          <div className="card flex-shrink-0 w-full max-w-sm  bg-red-200">
+            <form onSubmit={handleLogin} className = "card-body ">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -84,7 +99,7 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">LogIn</button>
+                <button className="btn p-4 text-black-900 bg-blue-400">LogIn</button>
               </div>
             </form>
             <p className="mb-4 ml-8">
@@ -96,9 +111,9 @@ const Login = () => {
             <div>
               <button
                 onClick={handleGoogleSignIn}
-                className="btn btn-primary p-4 m-4"
+                className="btn p-4  bg-blue-400"
               >
-                 Google
+                Google
               </button>
             </div>
           </div>

@@ -24,7 +24,7 @@ const NavBar = () => {
   const navOption = (
     <>
       <div className="dropdown p-2">
-        <Link className="btn p-4" onClick={toggleDropdown} to="/">
+        <Link className="btn p-4 text-black-900 bg-blue-400" onClick={toggleDropdown} to="/">
           Home
         </Link>
         {isDropdownOpen && (
@@ -37,7 +37,7 @@ const NavBar = () => {
       </div>
 
       <div className="dropdown p-2">
-        <button className="btn p-4" onClick={toggleDropdown}>
+        <button className="btn p-4 text-black-900 bg-blue-400" onClick={toggleDropdown}>
           All COurse
         </button>
         {isDropdownOpen && (
@@ -50,7 +50,7 @@ const NavBar = () => {
       </div>
 
       <div className="dropdown p-2">
-        <button className="btn p-4" onClick={toggleDropdown}>
+        <button className="btn p-4 text-black-900 bg-blue-400" onClick={toggleDropdown}>
           Blog Class
         </button>
         {isDropdownOpen && (
@@ -63,32 +63,33 @@ const NavBar = () => {
       </div>
 
       <div className="dropdown p-2 ">
-        <Link className="btn p-4" to="/contract" >
+        <Link className="btn p-4 text-black-900 bg-blue-400" to="/contract" >
           Contract
         </Link>
         
       </div>
       <div className="dropdown p-2">
-        <Link className="btn p-4" to="/login">
-          Login
+        <Link className="btn p-4 text-black-900 bg-blue-400" to="/secret">
+          Secret
         </Link>
       </div>
+      
       <div className="dropdown p-2">
-        <Link className="btn p-4" to="/register">
+        <Link className="btn p-4 text-black-900 bg-blue-400" to="/register">
           Regster
         </Link>
       </div>
       <div className="dropdown p-2">
-        <Link className="btn p-4" to="/signup">
+        <Link className="btn p-4 text-black-900 bg-blue-400" to="/signup">
           Sign UP
         </Link>
       </div>
       {
         user? <>
-        <button onClick={handleLogOut} className="btn btn-active btn-ghost">LogOut</button>
+        <button onClick={handleLogOut} className="btn p-4 text-black-900 bg-blue-400">LogOut</button>
 
         </>: <>
-        <Link className="btn p-4" to="/login">
+        <Link className="btn p-4 text-black-900 bg-blue-400" to="/login">
           Login
         </Link>
         
@@ -133,7 +134,7 @@ const NavBar = () => {
         </div>
 
         <div className="navbar-end p-12">
-          <a className="btn btn-primary p-4" >Enrollment</a>
+          <a className="btn p-4 text-black-900 bg-red-600" >Enrollment</a>
 
           <button className="btn btn-ghost btn-circle">
             <div className="indicator">
