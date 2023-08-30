@@ -3,15 +3,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import google from "../../assets/icon/google.png";
 
 const Register = () => {
   const {
     register,
     handleSubmit,
+
     reset,
     formState: { errors },
   } = useForm();
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, signInWithGoogle, updateUserProfile } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
@@ -33,15 +36,26 @@ const Register = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+
           navigate("/");
         })
         .catch((error) => console.log(error));
     });
+    const handleGoogleSignIn = () => {
+      signInWithGoogle()
+        .then((result) => {
+          const loggedUser = result.user;
+          console.log(loggedUser);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
   };
   return (
     <div>
-      <div className="hero min-h-screen bg-orange-300">
-        <div className="hero-content flex-col lg-10">
+      <div className="hero  min-h-screen bg-orange-300">
+        <div className="mt-20 hero-content flex-col lg-10">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold uppercase">Register Here !</h1>
           </div>
@@ -82,14 +96,13 @@ const Register = () => {
               {/* Photo URL */}
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text ">Photo URL</span>
+                  <span className="label-text">Photo URL</span>
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   {...register("photoURL", { required: true })}
                   placeholder="Photo URL"
                   className="input input-bordered"
-                  required
                 />
                 {errors.photoURL && (
                   <span className="text-red-600">Photo URL is required</span>
@@ -98,7 +111,7 @@ const Register = () => {
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text ">Password</span>
+                  <span className="label-text">Password</span>
                 </label>
                 <input
                   type="password"
@@ -106,15 +119,33 @@ const Register = () => {
                     required: true,
                     minLength: 6,
                     maxLength: 20,
+                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
                   })}
-                  name="password"
-                  placeholder="Enter password"
+                  placeholder="password"
                   className="input input-bordered"
-                  required
                 />
                 {errors.password?.type === "required" && (
                   <p className="text-red-600">Password is required</p>
                 )}
+                {errors.password?.type === "minLength" && (
+                  <p className="text-red-600">Password must be 6 characters</p>
+                )}
+                {errors.password?.type === "maxLength" && (
+                  <p className="text-red-600">
+                    Password must be less than 20 characters
+                  </p>
+                )}
+                {errors.password?.type === "pattern" && (
+                  <p className="text-red-600">
+                    Password minimum 1 number, Uppercase, lower 
+                    & special character.
+                  </p>
+                )}
+                <label className="label">
+                  <a href="#" className="label-text-alt link link-hover">
+                    Forgot password?
+                  </a>
+                </label>
               </div>
               {/* <div className="form-control">
                 <label className="label">
@@ -133,6 +164,17 @@ const Register = () => {
                 <button className="btn p-4  bg-blue-400">Register</button>
               </div>
             </form>
+            <p className="mb-4 ml-8">
+              <Link to="/register" className="level-text-alt link-hover">
+                Have no account? Please Register !
+              </Link>
+            </p>
+            {/* signin with Google */}
+            <div className="form-control items-center">
+              <button onClick={signInWithGoogle} className="btn-circle">
+                <img src={google} alt="" className="w-10 rounded-full" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import google from '../../assets/icon/google.png'
+
 import Swal from "sweetalert2";
 
 
@@ -23,7 +25,7 @@ const Login = () => {
     //password error or correct identification and validation link up hi dear.
 
     signIn(email, password)
-      .then((result) => {
+      .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser);
         form.reset();
@@ -108,12 +110,9 @@ const Login = () => {
               </Link>
             </p>
             {/* signin with Google */}
-            <div>
-              <button
-                onClick={handleGoogleSignIn}
-                className="btn p-4  bg-blue-400"
-              >
-                Google
+            <div className="form-control items-center mt-2 p-3">
+              <button onClick={handleGoogleSignIn} className="btn-circle">
+                <img src={google} alt="" className="w-10 rounded-full"/>
               </button>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import profile from "../../../assets/icon/correct.png";
+import LearningMain from "../../../assets/icon/LearningMain.jpg";
 
 import { useContext, useState } from "react";
 import "./NavBar.css";
@@ -12,19 +13,21 @@ const NavBar = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const {user, logOut} = useContext(AuthContext);
-  const handleLogOut =()=>{
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
     logOut()
-    .then(()=>{})
-    .catch(error => console.log(error));
-    
-
-  }
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
 
   const navOption = (
     <>
       <div className="dropdown p-2">
-        <Link className="btn p-4 text-black-900 bg-blue-400" onClick={toggleDropdown} to="/">
+        <Link
+          className="btn p-4 text-black-900 bg-blue-400"
+          onClick={toggleDropdown}
+          to="/"
+        >
           Home
         </Link>
         {isDropdownOpen && (
@@ -37,7 +40,10 @@ const NavBar = () => {
       </div>
 
       <div className="dropdown p-2">
-        <button className="btn p-4 text-black-900 bg-blue-400" onClick={toggleDropdown}>
+        <button
+          className="btn p-4 text-black-900 bg-blue-400"
+          onClick={toggleDropdown}
+        >
           All COurse
         </button>
         {isDropdownOpen && (
@@ -50,7 +56,10 @@ const NavBar = () => {
       </div>
 
       <div className="dropdown p-2">
-        <button className="btn p-4 text-black-900 bg-blue-400" onClick={toggleDropdown}>
+        <button
+          className="btn p-4 text-black-900 bg-blue-400"
+          onClick={toggleDropdown}
+        >
           Blog Class
         </button>
         {isDropdownOpen && (
@@ -63,39 +72,39 @@ const NavBar = () => {
       </div>
 
       <div className="dropdown p-2 ">
-        <Link className="btn p-4 text-black-900 bg-blue-400" to="/contract" >
+        <Link className="btn p-4 text-black-900 bg-blue-400" to="/contract">
           Contract
         </Link>
-        
       </div>
       <div className="dropdown p-2">
         <Link className="btn p-4 text-black-900 bg-blue-400" to="/secret">
           Secret
         </Link>
       </div>
-      
+
       <div className="dropdown p-2">
         <Link className="btn p-4 text-black-900 bg-blue-400" to="/register">
-          Regster
+          Register
         </Link>
       </div>
-      <div className="dropdown p-2">
-        <Link className="btn p-4 text-black-900 bg-blue-400" to="/signup">
-          Sign UP
-        </Link>
-      </div>
-      {
-        user? <>
-        <button onClick={handleLogOut} className="btn p-4 text-black-900 bg-blue-400">LogOut</button>
 
-        </>: <>
-        <Link className="btn p-4 text-black-900 bg-blue-400" to="/login">
-          Login
-        </Link>
-        
+      {user ? (
+        <>
+          <span>{user?.displayName}</span>
+          <button
+            onClick={handleLogOut}
+            className="btn p-4 text-black-900 bg-blue-400"
+          >
+            LogOut
+          </button>
         </>
-      }
-
+      ) : (
+        <>
+          <Link className="btn p-4 text-black-900 bg-blue-400" to="/login">
+            Login
+          </Link>
+        </>
+      )}
     </>
   );
 
@@ -127,14 +136,15 @@ const NavBar = () => {
               {navOption}
             </ul>
           </div>
+          <img src={LearningMain} alt="" className="w-10 rounded-full" />
           <a className="btn btn-ghost normal-case text-xl ">Learning Course</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOption}</ul>
         </div>
 
-        <div className="navbar-end p-12">
-          <a className="btn p-4 text-black-900 bg-red-600" >Enrollment</a>
+        <div className="navbar-end">
+          <a className="btn p-4 text-black-900 bg-red-600">Enrollment</a>
 
           <button className="btn btn-ghost btn-circle">
             <div className="indicator">

@@ -1,4 +1,4 @@
-import { getAuth } from "firebase/auth";
+import { getAuth, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from 'react';
 import {app} from '../firebase/firebase.config';
 
@@ -25,6 +25,7 @@ const AuthProvider = ({ children }) => {
 
     /* google add l-2 */
     const signInWithGoogle = () =>{
+        setLoading(true);
         return signInWithPopup(auth, googleAuthProvider);
     }
 
@@ -52,8 +53,6 @@ const AuthProvider = ({ children }) => {
         }
 
     }, [])
-
-
 
     const authInfo = {
         user,

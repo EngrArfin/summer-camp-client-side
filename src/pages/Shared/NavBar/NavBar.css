@@ -1,18 +1,19 @@
 .App {
     text-align: center;
+    
   }
   
   .navbar {
-    display: flex;
+    background: #c37c7c;
     justify-content: space-between;
     align-items: center;
-    
+    display: flex;
     color: white;
     padding: 10px;
   }
   
   .logo {
-    font-size: 24px;
+    font-size: 20px;
   }
   
   .dropdown-btn {

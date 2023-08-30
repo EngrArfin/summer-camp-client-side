@@ -2,12 +2,14 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import google from '../../assets/icon/google.png'
+
 import Swal from "sweetalert2";
 
 const SignUp = () => {
  
   const {register, handleSubmit,reset,  formState: { errors }} = useForm();
-  const {  createUser , updateUserProfile } = useContext(AuthContext);
+  const {  createUser ,signInWithGoogle, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const onSubmit = data => {
@@ -34,6 +36,16 @@ const SignUp = () => {
       })
       .catch(error => console.log(error));
     })
+    const handleGoogleSignIn = () => {
+      signInWithGoogle()
+        .then((result) => {
+          const loggedUser = result.user;
+          console.log(loggedUser);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }
   };
   /* navigate('/'); */
   return (
@@ -119,10 +131,16 @@ const SignUp = () => {
                   </Link>
                 </label>
               </div> 
-              <div className="form-control mt-6">
+              <div className="form-control items-center mt-6">
                 <Link className="btn p-4  bg-blue-400">Register</Link>
               </div>
             </form>
+            {/* signin with Google */}
+            <div className="form-control items-center mt-2 p-3">
+              <button onClick={signInWithGoogle} className="btn-circle">
+               <img src={google} alt="" className="w-10 rounded-full" /> 
+              </button>
+            </div>
           </div>
         </div>
       </div>
