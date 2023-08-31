@@ -11,7 +11,7 @@ import { Rating } from "@smastrom/react-rating";
 const InstructorCategories = () => {
   const [teachers, setTeachers] = useState([]);
   useEffect(() => {
-    fetch("teachers.json")
+    fetch("http://localhost:5000/teachers")
       .then((res) => res.json())
       .then((data) => setTeachers(data));
   }, []);

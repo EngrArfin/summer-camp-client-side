@@ -15,7 +15,7 @@ import "@smastrom/react-rating/style.css";
 const PopularCategories = () => {
   const [students, setReviews] = useState([]);
   useEffect(() => {
-    fetch("students.json")
+    fetch("http://localhost:5000/courses")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
