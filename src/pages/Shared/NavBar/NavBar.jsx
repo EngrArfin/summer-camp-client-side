@@ -6,6 +6,8 @@ import "./NavBar.css";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
+import { FaShoppingCart, } from 'react-icons/fa';
+
 const NavBar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -105,6 +107,14 @@ const NavBar = () => {
           </Link>
         </>
       )}
+      <div>
+        <Link to="/">
+          <button className="btn">
+          <FaShoppingCart></FaShoppingCart>
+            <div className="badge badge-secondary">+00</div>
+          </button>
+        </Link>
+      </div>
     </>
   );
 

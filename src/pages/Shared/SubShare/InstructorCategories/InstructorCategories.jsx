@@ -6,8 +6,6 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { Rating } from "@smastrom/react-rating";
-
 const InstructorCategories = () => {
   const [teachers, setTeachers] = useState([]);
   useEffect(() => {
