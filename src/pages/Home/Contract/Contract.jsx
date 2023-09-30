@@ -1,10 +1,13 @@
+import { Helmet } from "react-helmet";
 
-
-const Contract = () => {
+const   Contract = () => {
   return (
     <div>
+      <Helmet>
+        <title>Learn Language || Contract </title>
+      </Helmet>
       <div>
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h      -screen bg-base-200">
           <div className="hero-content flex-col lg:flex-row-reverse">
             <img
               src="/public/contract.jpg"

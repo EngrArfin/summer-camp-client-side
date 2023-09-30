@@ -41,7 +41,7 @@ const Register = () => {
         })
         .catch((error) => console.log(error));
     });
-    const handleGoogleSignIn = () => {
+    /* const handleGoogleSignIn = () => {
       signInWithGoogle()
         .then((result) => {
           const loggedUser = result.user;
@@ -50,7 +50,7 @@ const Register = () => {
         .catch((error) => {
           console.log(error);
         });
-    };
+    }; */
   };
   return (
     <div>
@@ -137,8 +137,8 @@ const Register = () => {
                 )}
                 {errors.password?.type === "pattern" && (
                   <p className="text-red-600">
-                    Password minimum 1 number, Uppercase, lower 
-                    & special character.
+                    Password minimum 1 number, Uppercase, lower & special
+                    character.
                   </p>
                 )}
                 <label className="label">
@@ -147,26 +147,18 @@ const Register = () => {
                   </a>
                 </label>
               </div>
-              {/* <div className="form-control">
-                <label className="label">
-                  <span className="label-text ">Photo URL</span>
-                </label>
-                <input type="file" {...register("photo")} name="photo" id="" required />
-
-                <label className="label ">
-                  Already have an account?
-                  <Link to="/login" className="label-text-alt link-hover">
-                    Login
-                  </Link>
-                </label>
-              </div>  */}
+              
               <div className="form-control mt-6">
                 <button className="btn p-4  bg-blue-400">Register</button>
               </div>
             </form>
-            <p className="mb-4 ml-8">
-              <Link to="/register" className="level-text-alt link-hover">
-                Have no account? Please Register !
+            <p className="mb-4 ml-8 ">
+              Have no account?
+              <Link
+                to="/login"
+                className=" text-sky-500 p-3 level-text-alt link-hover"
+              >
+                Log In
               </Link>
             </p>
             {/* signin with Google */}

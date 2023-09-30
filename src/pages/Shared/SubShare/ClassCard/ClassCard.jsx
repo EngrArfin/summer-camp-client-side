@@ -1,62 +1,55 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper/modules";
-//import Swal from "sweetalert2";
 
  import "swiper/css"; 
  import "swiper/css/free-mode"; 
 import "swiper/css/pagination"; 
 
+
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
+import useCart from "../../../../hooks/useCart";
+import { useContext } from "react";
+import { AuthContext } from "../../../../AuthProvider/AuthProvider";
 import SubTitle from "../SubTitle/SubTitle";
-import { useEffect, useState } from "react";
-import { Rating } from "@smastrom/react-rating";
-import "@smastrom/react-rating/style.css";
-//import { useContext } from "react";
-//import { AuthContext } from "../../../../AuthProvider/AuthProvider";
-//import { useLocation, useNavigate } from "react-router-dom";
+import { FaRegClosedCaptioning } from "react-icons/fa";
 
-const PopularCategories = ( /* { item } */ ) => {
-  //const { name, img, price,instructor, _id} = item; 
-  //const { user } = useContext(AuthContext);
-  //const navigate = useNavigate();
-  //const location = useLocation();
+const ClassCard = ({ item }) => {
+  const { name , img, rating , price,instructor,  _id} = item; 
+  
+  const { user } = useContext(AuthContext);
+  const [, refetch] = useCart();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-
-  const [students, setReviews] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/courses")
-      .then((res) => res.json())
-      .then((data) => setReviews(data));
-  }, []);
-
-  /* const handleAddToCart = item => {
-    console.log(item);  
+  const handleAddToCart = (item) => {
+    console.log(item);
     if (user && user.email) {
-     const cartItem ={menuItemId: _id,name, img , price,instructor, email: user.email}  
+        const cartItem ={menuItemId: _id, name , rating , img , price, instructor, email: user.email}
       fetch("http://localhost:5000/carts", {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'content-type': 'application/json'
+          "content-type": "application/json",
         },
-        body: JSON.stringify(cartItem)
+        body: JSON.stringify(cartItem),
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.insertId) {
+          if (data.insertedId) {
+            refetch(); 
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Course is Add on the cart",
+              title: "Food Added on the cart ",
               showConfirmButton: false,
               timer: 1500,
             });
           }
         });
-    }
-    else {
+    } else {
       Swal.fire({
-        title: "lease login to order food?",
-        text: "You won't be able to revert this!",
+        title: "Login for order food?",
+        text: "without login You won't be able to to order food!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -68,9 +61,9 @@ const PopularCategories = ( /* { item } */ ) => {
         }
       });
     }
-  };  */
-
+  };
   return (
+
     <section className="my-20">
       <SubTitle
         title= {"Our Popular Class"}
@@ -89,29 +82,26 @@ const PopularCategories = ( /* { item } */ ) => {
         modules={[FreeMode, Pagination]}
         className="mySwiper"
       >
-        <div>
-          {students.map((student) => (
-            <SwiperSlide key={student._id}>
+        <SwiperSlide>
               <div>
                 <div className="card w-90 m-8 bg-base-100 shadow-xl">
                   <figure>
-                    <img src={student.img} alt="Shoes" />
+                    <img src={img} alt="Shoes" />
                   </figure>
                   <div className="card-body">
                     <div className="items-end">
                       <div>
                         <h2 className="card-title">
                           <div className="badge text-end badge-primary">
-                            <span>$ {student.price}</span>
+                            <span>$ {price}</span>
                           </div>
                         </h2>
                       </div>
-
                       <div>
                         <div className="flex flex-col items-end ">
-                          <Rating
+                          <FaRegClosedCaptioning
                             style={{ maxWidth: 100 }}
-                            value={student.rating}
+                            value={rating}
                             readOnly
                           />
                         </div>
@@ -119,13 +109,13 @@ const PopularCategories = ( /* { item } */ ) => {
                     </div>
 
                     <div className="card-title text-red-800">
-                      {student.name}
+                      {name}
                     </div>
-                    <div className="card-title ">{student.instructor}</div>
+                    <div className="card-title ">{instructor}</div>
                     <p>If a dog chews shoes whose shoes does he choose?</p>
                     <div>
                       <button
-                        /* onClick={() => handleAddToCart(item)}  */
+                        onClick={() => handleAddToCart(item)} 
                         className="btn p-4 text-black-900 bg-blue-400 "
                       >
                         Enroll
@@ -139,11 +129,37 @@ const PopularCategories = ( /* { item } */ ) => {
                 </div>
               </div>
             </SwiperSlide>
-          ))}
-        </div>
+    
       </Swiper>
     </section>
+
+    
   );
 };
 
-export default PopularCategories;
+export default ClassCard;
+
+{/* <div>
+      <div className="card w-96 bg-base-100 shadow-xl">
+        <figure>
+          <img src={image} alt="Shoes" />
+        </figure>
+        <p className="absolute right-0  mr-4 mt-4 bg-slate-900 text-white">
+          ${price}
+        </p>
+        <div className="card-body items-center text-center">
+          {" "}
+          <h2 className="card-title">{name}</h2>
+          <p>{recipe}</p>
+          <div className="card-actions justify-end">
+            <button
+              onClick={() => handleAddToCart(item)}
+              className="btn btn-outline border-0 border-b-4 mt-4"
+            >
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+      </div>
+    </div> */}
+

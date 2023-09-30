@@ -5,6 +5,7 @@ import { Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import { Helmet } from "react-helmet";
 
 const InstructorCategories = () => {
   const [teachers, setTeachers] = useState([]);
@@ -16,6 +17,10 @@ const InstructorCategories = () => {
 
   return (
     <section className="py-10">
+      <Helmet>
+      <title>Learn Language || Instructor </title>
+      </Helmet>
+      
       <SubTitle
         title={"Top Instructor"}
         subTitle={
@@ -51,6 +56,7 @@ const InstructorCategories = () => {
 
               </div>
             </SwiperSlide>
+            
           ))}
         </div>
         

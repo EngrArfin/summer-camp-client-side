@@ -11,7 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = location.state?.from?.pathname ||"/";
+  const from = location.state?.from?.pathname || "/" ;
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -104,9 +104,10 @@ const Login = () => {
                 <button className="btn p-4 text-black-900 bg-blue-400">LogIn</button>
               </div>
             </form>
-            <p className="mb-4 ml-8">
-              <Link to="/register" className="level-text-alt link-hover">
-                Have no account? Please Register !
+            <p className="mb-4 ml-8 ">
+              Have no account?
+              <Link to="/register" className=" text-sky-500 p-3 level-text-alt link-hover">
+                 Sign Up
               </Link>
             </p>
             {/* signin with Google */}

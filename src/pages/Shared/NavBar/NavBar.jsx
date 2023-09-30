@@ -1,21 +1,17 @@
 import profile from "../../../assets/icon/correct.png";
 import LearningMain from "../../../assets/icon/LearningMain.jpg";
-
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
-
-import { FaShoppingCart, } from 'react-icons/fa';
+import useCart from "../../../hooks/useCart";
 
 const NavBar = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { email, user, logOut } = useContext(AuthContext);
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+  const [cart] = useCart();
 
-  const { user, logOut } = useContext(AuthContext);
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -25,98 +21,86 @@ const NavBar = () => {
   const navOption = (
     <>
       <div className="dropdown p-2">
-        <Link
-          className="btn p-4 text-black-900 bg-blue-400"
-          onClick={toggleDropdown}
-          to="/"
-        >
+        <Link to="/" className="btn p-4 text-black-900 bg-blue-400">
           Home
         </Link>
-        {isDropdownOpen && (
-          <div className="dropdown-content">
-            <a href="#">Main Home</a>
-            <a href="#">Home Content</a>
-            <a href="#">Home Call</a>
-          </div>
-        )}
       </div>
 
-      <div className="dropdown p-2">
-        <button
-          className="btn p-4 text-black-900 bg-blue-400"
-          onClick={toggleDropdown}
-        >
-          All COurse
-        </button>
-        {isDropdownOpen && (
-          <div className="dropdown-content">
-            <Link to="/english">English Learning</Link>
-            <a href="#">Item 2</a>
-            <a href="#">Item 3</a>
-          </div>
-        )}
+      <div className=" p-2">
+        <Link to="/allCourse" className="btn p-4 text-black-900 bg-blue-400">
+          All Course
+        </Link>
       </div>
 
-      <div className="dropdown p-2">
-        <button
-          className="btn p-4 text-black-900 bg-blue-400"
-          onClick={toggleDropdown}
-        >
-          Blog Class
-        </button>
-        {isDropdownOpen && (
-          <div className="dropdown-content">
-            <a href="#">Item 1</a>
-            <a href="#">Item 2</a>
-            <a href="#">Item 3</a>
-          </div>
-        )}
+      <div className=" p-2">
+        <Link to="/instructor" className="btn p-4 text-black-900 bg-blue-400">
+          OUT INSTRUCTOR
+        </Link>
       </div>
 
-      <div className="dropdown p-2 ">
+      <div className=" p-2 ">
         <Link className="btn p-4 text-black-900 bg-blue-400" to="/contract">
           Contract
         </Link>
       </div>
-      <div className="dropdown p-2">
-        <Link className="btn p-4 text-black-900 bg-blue-400" to="/secret">
-          Secret
-        </Link>
-      </div>
-
-      <div className="dropdown p-2">
+      <div className="p-2">
         <Link className="btn p-4 text-black-900 bg-blue-400" to="/register">
           Register
         </Link>
       </div>
-
-      {user ? (
-        <>
-          <span>{user?.displayName}</span>
-          <button
-            onClick={handleLogOut}
-            className="btn p-4 text-black-900 bg-blue-400"
-          >
-            LogOut
-          </button>
-        </>
-      ) : (
-        <>
-          <Link className="btn p-4 text-black-900 bg-blue-400" to="/login">
+      <div className="p-2">
+        <Link className="btn p-4 mb-2 text-black-900 bg-blue-400" to="/login">
             Login
           </Link>
-        </>
-      )}
+      </div>
       <div>
-        <Link to="/">
+        <Link to="/dashboard/mycart">
           <button className="btn">
-          <FaShoppingCart></FaShoppingCart>
-            <div className="badge badge-secondary">+00</div>
+            <FaShoppingCart></FaShoppingCart>
+            <div className="badge badge-secondary">{cart?.length || 0}</div>
           </button>
         </Link>
       </div>
     </>
   );
+
+ const Option = (
+    <>
+    <div className="dropdown dropdown-end">
+      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+        <Link>Login</Link>
+      </label>
+      <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+        <li>
+        <Link className="justify-between" to="/register">
+          
+        </Link>
+        {user ? (
+        <>
+          <span to="/dashboard/mycart">{user?.displayName || email?.displayEmail}</span>
+          <Link className="justify-between" to="/dashboard/mycart">
+            Dashboard
+          </Link>
+          <button onClick={handleLogOut} className="justify-between">
+            Logout
+          </button>
+        </>
+      ) : (
+        <>
+          
+          <Link className="justify-between" to="/login">
+            Login
+          </Link>
+        </>
+      )} 
+
+        </li>
+        
+      </ul>
+    </div>
+    </>
+  ); 
+
 
   return (
     <>
@@ -145,6 +129,12 @@ const NavBar = () => {
             >
               {navOption}
             </ul>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              {Option}
+            </ul>
           </div>
           <img src={LearningMain} alt="" className="w-10 rounded-full" />
           <a className="btn btn-ghost normal-case text-xl ">Learning Course</a>
@@ -155,32 +145,10 @@ const NavBar = () => {
 
         <div className="navbar-end">
           <a className="btn p-4 text-black-900 bg-red-600">Enrollment</a>
-
-          <button className="btn btn-ghost btn-circle">
-            <div className="indicator">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                />
-              </svg>
-              <span className="badge badge-xs badge-primary indicator-item"></span>
-            </div>
-          </button>
-
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src={profile} />
-            </div>
+          <label tabIndex={0} className="">
+          <ul className="menu menu-horizontal px-1">{Option}</ul>
           </label>
+          
         </div>
       </div>
     </>
@@ -188,3 +156,4 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
