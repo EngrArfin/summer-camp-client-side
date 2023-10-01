@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 import PopularCategories from "../../Shared/SubShare/PopularCategories/PopularCategories";
-import ClassCard from "../../Shared/SubShare/ClassCard/ClassCard";
+//import ClassCard from "../../Shared/SubShare/ClassCard/ClassCard";
 
 
 const AllCourse = () => {
@@ -10,8 +10,8 @@ const AllCourse = () => {
                 <title>Learn Language || All course </title>
             </Helmet>
             <h2>All Course</h2>
-            <ClassCard></ClassCard>
-            {/* <PopularCategories></PopularCategories> */}
+            {/* <ClassCard></ClassCard> */}
+            <PopularCategories></PopularCategories> 
         </div>
     );
 };

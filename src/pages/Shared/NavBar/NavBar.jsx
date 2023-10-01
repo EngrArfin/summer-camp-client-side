@@ -1,17 +1,13 @@
-import profile from "../../../assets/icon/correct.png";
 import LearningMain from "../../../assets/icon/LearningMain.jpg";
 import { useContext } from "react";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
-import { FaShoppingCart } from "react-icons/fa";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
-import useCart from "../../../hooks/useCart";
+//import useCart from "../../../hooks/useCart";
 
 const NavBar = () => {
-  const { email, user, logOut } = useContext(AuthContext);
-
-  const [cart] = useCart();
-
+  const { user, logOut } = useContext(AuthContext);
+  //const [cart] = useCart();
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -43,28 +39,54 @@ const NavBar = () => {
           Contract
         </Link>
       </div>
-      <div className="p-2">
-        <Link className="btn p-4 text-black-900 bg-blue-400" to="/register">
-          Register
-        </Link>
-      </div>
-      <div className="p-2">
-        <Link className="btn p-4 mb-2 text-black-900 bg-blue-400" to="/login">
-            Login
-          </Link>
-      </div>
+     
+    </>
+  );
+
+  const Option = (
+    <>
       <div>
-        <Link to="/dashboard/mycart">
-          <button className="btn">
-            <FaShoppingCart></FaShoppingCart>
-            <div className="badge badge-secondary">{cart?.length || 0}</div>
-          </button>
-        </Link>
+        {user ? (
+          <>
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                 <div className="w-10 rounded-full">
+                  <img src={user.photoURL } alt=""  />        
+                </div> 
+                
+              </label>
+              <ul
+                tabIndex={0}
+                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+              >
+                <>
+                {user.email}
+                  <span className=" justify-between text-start">
+                    {user?.displayName }
+                  </span>
+                   
+                  <Link className=" justify-between text-start" to="/dashboard/myCart">
+                    Dashboard
+                  </Link>
+                  <Link onClick={handleLogOut} className="justify-between text-start">
+                    Logout
+                  </Link>
+                </>
+              </ul>
+            </div>
+          </>
+        ) : (
+          <>
+             <Link className="btn p-4 text-black-900 bg-blue-400" to="/login">
+              Login
+            </Link> 
+          </>
+        )}
       </div>
     </>
   );
 
- const Option = (
+  /* const Option = (
     <>
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -99,8 +121,7 @@ const NavBar = () => {
       </ul>
     </div>
     </>
-  ); 
-
+  );  */
 
   return (
     <>
@@ -142,13 +163,11 @@ const NavBar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOption}</ul>
         </div>
-
         <div className="navbar-end">
-          <a className="btn p-4 text-black-900 bg-red-600">Enrollment</a>
+          <Link to="/dashboard/payment" className="btn p-4 text-black-900 bg-red-600">Enrollment</Link>
           <label tabIndex={0} className="">
-          <ul className="menu menu-horizontal px-1">{Option}</ul>
+            <ul className="menu menu-horizontal px-1">{Option}</ul>
           </label>
-          
         </div>
       </div>
     </>
@@ -156,4 +175,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-

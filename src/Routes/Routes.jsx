@@ -22,6 +22,8 @@ import AddCourse from "../pages/Dashboard/Admin/AddCourse/AddCourse";
 import EnrolledCourse from "../pages/Dashboard/EnrolledCourse/EnrolledCourse";
 import PlayList from "../pages/Dashboard/PlayList/PlayList";
 import ManageCourse from "../pages/Dashboard/Admin/ManageCourse/ManageCourse";
+import Payment from "../pages/Dashboard/Payment/Payment";
+import Enrolled from "../pages/Dashboard/EnrolledCourse/Enrolled";
 
   export const router = createBrowserRouter([
     {
@@ -69,13 +71,13 @@ import ManageCourse from "../pages/Dashboard/Admin/ManageCourse/ManageCourse";
               path: 'selectedCourse',
               element: <SelectedClass></SelectedClass>
             },
-            {
+            /* {
               path: 'enrolledCourse',
               element: <EnrolledCourse></EnrolledCourse>
-            },
+            }, */
             {
-              path: 'enrolledClass',
-              element: <EnrolledCourse></EnrolledCourse>
+              path: 'enrolled',
+              element: <Enrolled></Enrolled>
             },
             {
               path: 'playList',
@@ -87,6 +89,10 @@ import ManageCourse from "../pages/Dashboard/Admin/ManageCourse/ManageCourse";
               element: <MyCart></MyCart>
             },
             {
+              path: 'payment',
+              element: <Payment></Payment>
+            },
+            {
               path: 'paymentList',
               element: <PaymentList></PaymentList>
             },
@@ -94,7 +100,7 @@ import ManageCourse from "../pages/Dashboard/Admin/ManageCourse/ManageCourse";
       
             //Admin Routes Here
             {
-              path: 'homeadmin',
+              path: 'homeAdmin',
               element: <HomeAdmin></HomeAdmin> //<AdminRoute></AdminRoute> 
             },
             {

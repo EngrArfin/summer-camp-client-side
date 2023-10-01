@@ -41,7 +41,8 @@ const Register = () => {
         })
         .catch((error) => console.log(error));
     });
-    /* const handleGoogleSignIn = () => {
+
+     /* const handleGoogleSignIn = () => {
       signInWithGoogle()
         .then((result) => {
           const loggedUser = result.user;
@@ -50,17 +51,18 @@ const Register = () => {
         .catch((error) => {
           console.log(error);
         });
-    }; */
+    }; */ 
+
   };
   return (
     <div>
-      <div className="hero  min-h-screen bg-orange-300">
+      <div className="hero mb-2 min-h-screen bg-orange-100">
         <div className="mt-20 hero-content flex-col lg-10">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold uppercase">Register Here !</h1>
+          <div className="text-center  lg:text-left">
+            <h1 className="text-4xl  font-bold uppercase">Please Register Here !</h1>
           </div>
-          <div className="card w-full max-w-sm bg-red-100">
-            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+          <div className=" border-spacing-2 w-full max-w-sm bg-red-500">
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body ">
               <div className="form-control flex">
                 <label className="label">
                   <span className="label-text ">Full Name</span>
@@ -153,7 +155,7 @@ const Register = () => {
               </div>
             </form>
             <p className="mb-4 ml-8 ">
-              Have no account?
+              Have An Account?
               <Link
                 to="/login"
                 className=" text-sky-500 p-3 level-text-alt link-hover"

@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
 //import { FaCalendarAlt, FaVideo } from "react-icons/fa";
-import { GrCheckboxSelected } from "react-icons/gr";
+import { BiSolidVideos } from "react-icons/bi";
 
-const SelectedClass = () => {
+const Enrolled = () => {
+  const [students, setStudents] = useState([]);
 
-    const [students, setStudents] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/courses")
+      .then((res) => res.json())
+      .then((data) => setStudents(data));
+  }, []);
 
-    useEffect(() => {
-      fetch("http://localhost:5000/courses")
-        .then((res) => res.json())
-        .then((data) => setStudents(data));
-    }, []);
-
-    
-    return (
-        <div className="flex flex-wrap">
+  return (
+    <div className="flex flex-wrap">
       {students.map((student) => (
         <div
           key={student._id}
@@ -27,11 +25,11 @@ const SelectedClass = () => {
             <div className="card-body">
               <h2 className="card-title">{student.name}</h2>
               <h4 className="card-title">{student.instructor}</h4>
-              <div className="badge bg-red-300 text-end  ">Price: ${student.price}</div>
+              <div className="badge bg-red-300 ">Price: ${student.price}</div>
 
               <div className="card-actions  justify-end ">
-                <button className="btn bg-green-400">
-                  <GrCheckboxSelected></GrCheckboxSelected> Selected
+                <button className="btn btn-primary">
+                  <BiSolidVideos></BiSolidVideos> Play Video
                 </button>
               </div>
             </div>
@@ -39,7 +37,7 @@ const SelectedClass = () => {
         </div>
       ))}
     </div>
-    );
+  );
 };
 
-export default SelectedClass;
+export default Enrolled;

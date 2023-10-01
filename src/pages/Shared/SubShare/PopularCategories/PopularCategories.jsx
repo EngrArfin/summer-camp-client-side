@@ -10,6 +10,7 @@ import SubTitle from "../SubTitle/SubTitle";
 import { useEffect, useState } from "react";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import { Link } from "react-router-dom";
 //import { useContext } from "react";
 //import { AuthContext } from "../../../../AuthProvider/AuthProvider";
 //import { useLocation, useNavigate } from "react-router-dom";
@@ -75,7 +76,7 @@ const PopularCategories = ( /* { item } */ ) => {
       <SubTitle
         title= {"Our Popular Class"}
         subTitle={
-          "Jeffrey crikey victoria sponge mush spiffing . The little rotter off his nut codswallop.!"
+          "Selected out popular class "
         }
       ></SubTitle>
 
@@ -124,12 +125,12 @@ const PopularCategories = ( /* { item } */ ) => {
                     <div className="card-title ">{student.instructor}</div>
                     <p>If a dog chews shoes whose shoes does he choose?</p>
                     <div>
-                      <button
+                      <Link to="/dashboard/payment"
                         /* onClick={() => handleAddToCart(item)}  */
                         className="btn p-4 text-black-900 bg-blue-400 "
                       >
                         Enroll
-                      </button>
+                      </Link>
                     </div>
                     <div className=" flex card-actions justify-end">
                       <div className="badge badge-outline">12 Lessons</div>

@@ -1,18 +1,59 @@
+import { Link, NavLink, Outlet } from "react-router-dom";
+import { FaCalendarAlt, FaHome, FaWallet } from "react-icons/fa";
 
-import { NavLink, Outlet } from 'react-router-dom';
-import { FaCalendarAlt, FaHome, FaShoppingCart, FaWallet} from 'react-icons/fa';
-
-import useCart from '../hooks/useCart';
-import LearningMain from '../assets/icon/LearningMain.jpg';
-
+//import useCart from "../hooks/useCart";
+import LearningMain from "../assets/icon/LearningMain.jpg";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Dashboard = () => {
-    const [cart]= useCart();
-    return (
-        <div className="drawer lg:drawer-open"> 
+  //const [cart] = useCart();
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
+
+  const Dash = (
+    <>
+      <div>
+        {user ? (
+          <>
+            {/* <img src={LearningMain} alt=""
+              className="w-12 rounded-full mt-5 ml-24"
+            /> */}
+            <img
+              src={user.photoURL}
+              alt="Profile"
+              className="w-12 rounded-full mt-5 ml-24"
+            />
+
+            <div className=" ml-8 mt-2" >
+              {user.email}
+            </div>
+            <br />
+            <span className="ml-20 text-black-600 uppercase front-bold ">
+                  {user?.displayName}
+                </span>
+
+          </>
+        ) : (
+          <>
+            <Link className="justify-between" to="/login">
+              Login
+            </Link>
+          </>
+        )}
+      </div>
+    </>
+  );
+
+  return (
+    <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-center justify-center">
-        
         <Outlet></Outlet>
         <label
           htmlFor="my-drawer-2"
@@ -22,30 +63,97 @@ const Dashboard = () => {
         </label>
       </div>
       <div className="drawer-side bg-[#D1A054] ">
-      <img src={LearningMain} alt="" className="w-10 rounded-full mt-5 ml-24" />
+        {/* <img src={LearningMain} alt="" className="w-10 rounded-full mt-5 ml-24" /> */}
+        <ul className="menu menu-horizontal px-1">{Dash}</ul>
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80  ">
-          
-          <li><NavLink to="/dashboard/homeStudent"><FaHome></FaHome>Home Student</NavLink></li>
-          <li><NavLink to="/dashboard/selectedCourse"><FaCalendarAlt></FaCalendarAlt>Selected Course</NavLink></li>
-          <li><NavLink to="/dashboard/enrolledCourse"><FaWallet></FaWallet>Enrolled Course</NavLink></li>
-          <li><NavLink to="/dashboard/playList"><FaWallet></FaWallet>Play List</NavLink></li>
-          <li><NavLink to="/dashboard/paymentList"><FaWallet></FaWallet>Payment List</NavLink></li>
-          
-          <li><NavLink to="/dashboard/myCart"><FaShoppingCart></FaShoppingCart>My Cart
-          <span className="badge badge-secondary">{cart?.length || 0 }</span>
-          </NavLink></li>
-          
-          <div className="divider"></div>
+          <div className="divider">User</div>
+          <li>
+            <NavLink to="/dashboard/homeStudent">
+              <FaHome></FaHome>Home Student
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/selectedCourse">
+              <FaCalendarAlt></FaCalendarAlt>Selected Course
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/enrolled">
+              <FaWallet></FaWallet>Enrolled Course
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/playList">
+              <FaWallet></FaWallet>Play List
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/payment">
+              <FaWallet></FaWallet>Payment{" "}
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/paymentList">
+              <FaWallet></FaWallet>Payment List
+            </NavLink>
+          </li>
 
-          <li><NavLink to ="/"><FaHome></FaHome>  Home</NavLink></li>
-          <li><NavLink to="/menu">  Our Menu</NavLink></li>
-          <li><NavLink to="/order/salad">Order Food</NavLink></li>
-          
+          {/* <li><NavLink to="/dashboard/myCart"><FaShoppingCart></FaShoppingCart>My Cart
+          <span className="badge badge-secondary">{cart?.length || 0 }</span>
+          </NavLink></li> */}
+
+          <div className="divider">Home</div>
+          <li>
+            <NavLink to="/">
+              <FaHome></FaHome>Main Site
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/allCourse"> All Course</NavLink>
+          </li>
+          <li>
+            <NavLink to="/" onClick={handleLogOut}>
+              <FaHome></FaHome>Log Out
+            </NavLink>
+          </li>
+
+          <div className="divider">Admin</div>
+          <li>
+            <NavLink to="/dashboard/homeStudent">
+              <FaHome></FaHome>Home Student
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/selectedCourse">
+              <FaCalendarAlt></FaCalendarAlt>Selected Course
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/enrolled">
+              <FaWallet></FaWallet>Enrolled Course
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/playList">
+              <FaWallet></FaWallet>Play List
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/payment">
+              <FaWallet></FaWallet>Payment{" "}
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/paymentList">
+              <FaWallet></FaWallet>Payment List
+            </NavLink>
+          </li>
         </ul>
       </div>
     </div>
-    );
+  );
 };
 
-export default Dashboard; 
+export default Dashboard;

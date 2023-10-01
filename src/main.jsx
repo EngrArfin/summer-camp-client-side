@@ -28,10 +28,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </AuthProvider>
   </React.StrictMode>
 );
-{
-  /* <HelmetProvider>
-        <QueryClientProvider client={queryClient}>
-          
-        </QueryClientProvider>
-      </HelmetProvider> */
-}
+
