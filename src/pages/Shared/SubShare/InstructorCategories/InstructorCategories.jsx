@@ -16,12 +16,12 @@ const InstructorCategories = () => {
   }, []);
 
   return (
-    <section className="py-10">
+    <section className="py-10 ">
       <Helmet>
       <title>Learn Language || Instructor </title>
       </Helmet>
       
-      <SubTitle
+      <SubTitle 
         title={"Top Instructor"}
         subTitle={
           "Jeffrey crikey victoria sponge mush spiffing super arse over tit matie boy smashing. The little rotter off his nut codswallop.!"

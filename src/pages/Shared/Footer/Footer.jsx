@@ -1,20 +1,19 @@
 import LearningMain from '../../../assets/icon/LearningMain.jpg';
 
+import "./Footer.css";
 
 const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <div className=" m-5  ">
-      
+    <div className="body m-5  ">
+ 
 
-     
-      {/* Footer Here-1 */}
-
-      <footer className="footer p-3 bg-sky-200 mt-3 ">
+      <footer className="footer p-3 bg-custom-dark mt-3 uppercase ">
           <div>
             <img src={LearningMain} alt="" className="w-10 rounded-full" />
-            <h2 className="uppercase text-red-800">Learning Language</h2>
+            <h2 className="uppercase font-bold ">Learning <span className='text-red-800'>Language</span> </h2>
+            <div className="divider text-red-600"></div>
             <p>Learning Language Academy service star 2012</p>
             <p>Opening Time:</p>
             <p>Mon-Thurs 10:00 AM - :9:00 Pm</p>

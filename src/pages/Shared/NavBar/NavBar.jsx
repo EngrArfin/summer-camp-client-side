@@ -3,11 +3,10 @@ import { useContext } from "react";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
-//import useCart from "../../../hooks/useCart";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
-  //const [cart] = useCart();
+
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -16,30 +15,41 @@ const NavBar = () => {
 
   const navOption = (
     <>
-      <div className="dropdown p-2">
-        <Link to="/" className="btn p-4 text-black-900 bg-blue-400">
+      <div className="p-2">
+        <Link
+          to="/"
+          className="btn btn-nav hover:bg-blue-500 hover:text-white"
+        >
           Home
         </Link>
       </div>
 
-      <div className=" p-2">
-        <Link to="/allCourse" className="btn p-4 text-black-900 bg-blue-400">
+      <div className="p-2">
+        <Link
+          to="/allCourse"
+          className="btn btn-nav hover:bg-blue-500 hover:text-white"
+        >
           All Course
         </Link>
       </div>
 
-      <div className=" p-2">
-        <Link to="/instructor" className="btn p-4 text-black-900 bg-blue-400">
+      <div className="p-2">
+        <Link
+          to="/instructor"
+          className="btn btn-nav hover:bg-blue-500 hover:text-white"
+        >
           OUT INSTRUCTOR
         </Link>
       </div>
 
-      <div className=" p-2 ">
-        <Link className="btn p-4 text-black-900 bg-blue-400" to="/contract">
+      <div className="p-2">
+        <Link
+          className="btn btn-nav hover:bg-blue-500 hover:text-white"
+          to="/contract"
+        >
           Contract
         </Link>
       </div>
-     
     </>
   );
 
@@ -50,25 +60,27 @@ const NavBar = () => {
           <>
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                 <div className="w-10 rounded-full">
-                  <img src={user.photoURL } alt=""  />        
-                </div> 
-                
+                <div className="w-10 rounded-full">
+                  <img src={user.photoURL} alt="" />
+                </div>
               </label>
               <ul
                 tabIndex={0}
                 className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
               >
                 <>
-                {user.email}
+                  {user.email}
                   <span className=" justify-between text-start">
-                    {user?.displayName }
+                    {user?.displayName}
                   </span>
-                   
+
                   <Link className=" justify-between text-start" to="/dashboard/myCart">
                     Dashboard
                   </Link>
-                  <Link onClick={handleLogOut} className="justify-between text-start">
+                  <Link
+                    onClick={handleLogOut}
+                    className="justify-between text-start hover:text-red-400"
+                  >
                     Logout
                   </Link>
                 </>
@@ -77,55 +89,21 @@ const NavBar = () => {
           </>
         ) : (
           <>
-             <Link className="btn p-4 text-black-900 bg-blue-400" to="/login">
+            <Link
+              className="btn btn-nav hover:bg-blue-500 hover:text-white"
+              to="/login"
+            >
               Login
-            </Link> 
+            </Link>
           </>
         )}
       </div>
     </>
   );
 
-  /* const Option = (
-    <>
-    <div className="dropdown dropdown-end">
-      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        <Link>Login</Link>
-      </label>
-      <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-        <li>
-        <Link className="justify-between" to="/register">
-          
-        </Link>
-        {user ? (
-        <>
-          <span to="/dashboard/mycart">{user?.displayName || email?.displayEmail}</span>
-          <Link className="justify-between" to="/dashboard/mycart">
-            Dashboard
-          </Link>
-          <button onClick={handleLogOut} className="justify-between">
-            Logout
-          </button>
-        </>
-      ) : (
-        <>
-          
-          <Link className="justify-between" to="/login">
-            Login
-          </Link>
-        </>
-      )} 
-
-        </li>
-        
-      </ul>
-    </div>
-    </>
-  );  */
-
   return (
     <>
-      <div className="navbar max-w-8xl fixed z-10 bg-opacity-30 bg-black text-white">
+      <div className="navbar max-w-8xl fixed z-10 bg-opacity-70 bg-blue-900 text-white py-2">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -146,25 +124,32 @@ const NavBar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-blue-900 rounded-box w-52"
             >
               {navOption}
             </ul>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-blue-900 rounded-box w-52"
             >
               {Option}
             </ul>
           </div>
           <img src={LearningMain} alt="" className="w-10 rounded-full" />
-          <a className="btn btn-ghost normal-case text-xl ">Learning Course</a>
+          <a className="btn btn-ghost normal-case text-xl ">
+            Language <span className="text-red-800">Learning</span> 
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOption}</ul>
         </div>
         <div className="navbar-end">
-          <Link to="/dashboard/payment" className="btn p-4 text-black-900 bg-red-600">Enrollment</Link>
+          <Link
+            to="/dashboard/payment"
+            className="btn btn-enrollment hover:bg-red-600 hover:text-white"
+          >
+            Enrollment
+          </Link>
           <label tabIndex={0} className="">
             <ul className="menu menu-horizontal px-1">{Option}</ul>
           </label>

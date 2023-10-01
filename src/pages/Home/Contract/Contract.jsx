@@ -1,61 +1,66 @@
 import { Helmet } from "react-helmet";
-
-const   Contract = () => {
+import { FaPhone, FaEnvelope, FaGlobe, FaChartBar } from "react-icons/fa"; // Import icons
+import contract from '../../../assets/contract.png'
+const Contract = () => {
   return (
     <div>
       <Helmet>
-        <title>Learn Language || Contract </title>
+        <title>Learn Language || Contact</title>
       </Helmet>
-      <div>
-        <div className="hero min-h      -screen bg-base-200">
-          <div className="hero-content flex-col lg:flex-row-reverse">
-            <img
-              src="/public/contract.jpg"
-              className="max-w-sm rounded-lg shadow-2xl"
-            />
-            <div>
-              <h1 className="text-5xl font-bold">Contract Us </h1>
-              <p className="py-6">
-                {" "}
-                Online voting system is a software platform that allows groups
-                to securely conduct votes and elections.Create an election for
-                your school or organization in seconds. Voters can vote from any
-                location
-              </p>
-              <button className="btn btn-primary">Contract Here</button>
-            </div>
+      <div className="hero min-h-screen bg-base-200">
+        <div className="hero-content flex-col lg:flex-row-reverse">
+          <img
+            src={contract}
+            className="max-w-sm  shadow-2xl"
+          />
+          <div>
+            <h1 className="text-4xl uppercase font-bold">Contact Us</h1>
+            <h2 className="py-6">
+            Learning a new language during winter vacation can be a productive and enjoyable way to spend your time. Here are some tips to help you make the most of your language learning during the winter break
+            </h2>
+            <button className="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white">
+              <span className="mr-2">
+                <FaPhone />
+              </span>
+              Contact Here
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Contract Form */}
-      <div className="disply:center">
-        <div className="bg-center flex p-4 m-3">
-          <div className="card card-compact w-96 bg-base-100 shadow-xl p-3 m-3">
-            <div className="card-body">
-              <h2 className="card-title">Address</h2>
-              <p>House 23, Road 20. Banani </p>
-              <p>Dhaka 1213.</p>
-              <p>Bangladesh</p>
-            </div>
+      <div className="container mx-auto my-10 px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="bg-base-100 shadow-xl p-4 rounded-lg">
+            <h2 className="text-xl font-semibold">
+              <FaEnvelope /> 
+            </h2>
+            <p>arfin.cse.green.edu.bd@gmail.com</p>
           </div>
-          <div className="card card-compact w-96 bg-base-100 shadow-xl p-3 m-3">
-            <div className="card-body">
-              <h2 className="card-title">Contract Info</h2>
-              <p>Gmail: onlinevote@gmail.com </p>
-              <p>Phone: 01954376453</p>
-              <p>www.onlinevote.com/vote</p>
-            </div>
+          <div className="bg-base-100 shadow-xl p-4 rounded-lg">
+            <h2 className="text-xl font-semibold">
+              <FaPhone /> 
+            </h2>
+            <p>01952-487468</p>
           </div>
-          <div className="card card-compact w-96 bg-base-100 shadow-xl p-3 m-3">
-            <div className="card-body">
-              <h2 className="card-title">Go For Chat</h2>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Chat</button>
-              </div>
-            </div>
+          <div className="bg-base-100 shadow-xl p-4 rounded-lg">
+            <h2 className="text-xl font-semibold">
+              <FaGlobe /> 
+            </h2>
+            <p>
+              Website: <a href="https://s-arfin-dev.netlify.app/">https://s-arfin-dev.netlify.app/</a>
+            </p>
           </div>
         </div>
+      </div>
+
+     
+      <div className="container mx-auto my-4 text-center">
+        <button className="btn btn-primary bg-purple-500 hover:bg-purple-700 text-white">
+          <span className="mr-2">
+            <FaChartBar /> {/* Icon for Chart */}
+          </span>
+          View Chart
+        </button>
       </div>
     </div>
   );

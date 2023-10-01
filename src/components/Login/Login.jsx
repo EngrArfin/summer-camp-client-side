@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import google from '../../assets/icon/google.png'
-
 import Swal from "sweetalert2";
 
 
@@ -19,18 +18,13 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    //const photo = form.photo.value;
     console.log(email, password);
-
-    //password error or correct identification and validation link up hi dear.
-
     signIn(email, password)
       .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser);
         form.reset();
 
-        /* Success */
         Swal.fire({
           position: "top-end",
           icon: " Login success",
@@ -64,12 +58,12 @@ const Login = () => {
   };
   return (
     <div>
-      <div className="hero min-h-screen bg-orange-300">
+      <div className="hero min-h-screen bg-blue-00">
         <div className="hero-content flex-col ">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold uppercase">Please Login !</h1>
+            <h1 className="mt-8 text-3xl font-bold "> Please login </h1>
           </div>
-          <div className="card flex-shrink-0 w-full max-w-sm  bg-red-200">
+          <div className="border-2 border-red-500 rounded-lg p-6 mt-6 ">
             <form onSubmit={handleLogin} className = "card-body ">
               <div className="form-control">
                 <label className="label">
