@@ -15,9 +15,8 @@ const Footer = () => {
           </h2>
           <div className="divider text-red-600"></div>
           <p>Learning Language Academy service star 2012</p>
-          <p>Opening Time:</p>
-          <p>Mon-Thurs 10:00 AM - :9:00 Pm</p>
-          <p>Fri 09:00 AM - 11:59 AM</p>
+          <p>Opening Hours:</p>
+          <p>24 hours online</p>
         </div>
 
         <div>

@@ -134,13 +134,7 @@ const Dashboard = () => {
             <NavLink to="/dashboard/playList">
               <FaWallet></FaWallet>User Management
             </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/payment">
-              <FaWallet></FaWallet>Payment
-            </NavLink>
-          </li>
-          
+          </li> 
         </ul>
       </div>
     </div>
