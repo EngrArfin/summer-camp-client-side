@@ -19,7 +19,7 @@ const BrowseCategories = () => {
       <SubTitle
         title={"Browse Online Course Categories "}
         subTitle={
-          "Jeffrey crikey victoria sponge mush spiffing super arse over tit matie boy smashing. The little rotter off his nut codswallop.!"
+          "Learn Language category"
         }
       ></SubTitle>
 

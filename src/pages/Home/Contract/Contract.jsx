@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa"; // Import icons
 import contract from "../../../assets/contract.png";
 import { useState } from "react";
+import SubTitle from "../../Shared/SubShare/SubTitle/SubTitle";
 const Contract = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -35,100 +36,108 @@ const Contract = () => {
       <Helmet>
         <title>Learn Language || Contact</title>
       </Helmet>
+      
+      <div className="">
+      
       <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <img src={contract} className=" ml-40  max-w-sm  shadow-2xl" />
+      
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        <img src={contract} className=" ml-40  max-w-sm  shadow-2xl" />
+        <div className="container mx-auto mt-8 ">
+          <h1 className="text-4xl uppercase font-bold"></h1>
+          <SubTitle
+        title={"Contact "}
+      ></SubTitle>
 
-          <div className="container mx-auto mt-8 ">
-            <h1 className="text-4xl uppercase font-bold">Contact Us</h1>
-
-            <form
-              onSubmit={handleSubmit}
-              className="bg-emerald-800 text-white  shadow-md rounded px-8 pt-6 pb-8 mb-4"
-            >
-              <div className="flex ">
-                <div className="mb-4">
-                  <label
-                    className="block  text-sm font-bold mb-2"
-                    htmlFor="firstName"
-                  >
-                    First Name
-                  </label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    placeholder="First Name"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="mb-4 ml-3">
-                  <label
-                    className="block border-2xl text-sm font-bold mb-2"
-                    htmlFor="lastName"
-                  >
-                    Last Name
-                  </label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    placeholder="Last Name"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
+          <form
+            onSubmit={handleSubmit}
+            className="bg-emerald-800 text-white  shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          >
+            <div className="flex ">
               <div className="mb-4">
                 <label
                   className="block  text-sm font-bold mb-2"
-                  htmlFor="email"
+                  htmlFor="firstName"
                 >
-                  Email
+                  First Name
                 </label>
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Email"
-                  value={formData.email}
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  placeholder="First Name"
+                  value={formData.firstName}
                   onChange={handleChange}
                   required
                 />
               </div>
-              <div className="mb-4">
+              <div className="mb-4 ml-3">
                 <label
-                  className="block  text-sm font-bold mb-2"
-                  htmlFor="message"
+                  className="block border-2xl text-sm font-bold mb-2"
+                  htmlFor="lastName"
                 >
-                  Message
+                  Last Name
                 </label>
-                <textarea
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="message"
-                  name="message"
-                  placeholder="Your message here"
-                  value={formData.message}
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Last Name"
+                  value={formData.lastName}
                   onChange={handleChange}
                   required
                 />
               </div>
-              <div className="flex items-center justify-between">
-                <button className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">
-                  <FaFileContract />
-                  <span>Contract</span>
-                </button>
-              </div>
-            </form>
-          </div>
+            </div>
+            <div className="mb-4">
+              <label
+                className="block  text-sm font-bold mb-2"
+                htmlFor="email"
+              >
+                Email
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                className="block  text-sm font-bold mb-2"
+                htmlFor="message"
+              >
+                Message
+              </label>
+              <textarea
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="message"
+                name="message"
+                placeholder="Your message here"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <button className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">
+                <FaFileContract />
+                <span>Contract</span>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
+    </div>
+      </div>
+      
 
       <div className="container mx-auto my-10 px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
