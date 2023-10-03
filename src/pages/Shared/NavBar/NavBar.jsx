@@ -3,6 +3,7 @@ import { useContext } from "react";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import { useState } from "react";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -12,11 +13,19 @@ const NavBar = () => {
       .then(() => {})
       .catch((error) => console.log(error));
   };
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  // Function to toggle between dark and light themes
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
+  const bodyClass = isDarkMode ? "dark-theme" : "light-theme";
+  document.body.className = bodyClass;
+  
   const navOption = (
     <>
       <div className="p-2">
-        <Link
+        <Link onClick={toggleTheme}
           to="/"
           className="btn btn-nav hover:bg-blue-500 hover:text-white"
         >
